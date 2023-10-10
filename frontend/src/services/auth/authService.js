@@ -1,4 +1,5 @@
 import { HttpClient } from "../../infra/HttpClient/HttpClient";
+import { tokenService } from "./tokenService";
 
 export const authService = {
   async login({ username, password }) {
@@ -11,7 +12,8 @@ export const authService = {
         if (!respostaDoServidor.ok)
           throw new Error("Usuário ou senha inválidos");
         const body = await respostaDoServidor.body;
-        console.log(respostaDoServidor);
+        tokenService.save(body.data.access_token)
+
       })
     );
   },
