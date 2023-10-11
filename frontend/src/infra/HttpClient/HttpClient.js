@@ -15,7 +15,7 @@ export async function HttpClient(fetchUrl, fetchOptions) {
       ok: respostaDoServidor.ok,
       status: respostaDoServidor.status,
       status: respostaDoServidor.statusText,
-      body: respostaDoServidor.json(),
+      body: await respostaDoServidor.json(),
     };
   });
 }
