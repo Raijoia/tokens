@@ -23,25 +23,27 @@ export default function HomeScreen() {
   return (
     <div>
       <h1>Login</h1>
-      <form onSubmit={(event) => {
-        // onSubmit => controler (pega dados de um usuário e passa para um serviço)
-        // uthService => serviço
-        event.preventDefault();
+      <form
+        onSubmit={(event) => {
+          // onSubmit => controler (pega dados de um usuário e passa para um serviço)
+          // uthService => serviço
+          event.preventDefault();
 
-        authService.login({
-          username: values.usuario,
-          password: values.senha,
-        })
-        .then (() => {
-          // router.push('/auth-page-ssr');
-          router.push("/auth-page-static");
-        })
-        .catch((error) => {
-          alert("usuário ou senha inválidos");
-          console.log(error)
-        })
-
-      }}>
+          authService
+            .login({
+              username: values.usuario,
+              password: values.senha,
+            })
+            .then(() => {
+              // router.push('/auth-page-ssr');
+              router.push("/auth-page-static");
+            })
+            .catch((error) => {
+              alert("usuário ou senha inválidos");
+              console.log(error);
+            });
+        }}
+      >
         <input
           placeholder="Usuário"
           name="usuario"
@@ -63,6 +65,10 @@ export default function HomeScreen() {
         <div>
           <button>Entrar</button>
         </div>
+        <p>
+          <a href="/auth-page-ssr">auth-page-ssr</a>
+          <a href="/auth-page-static">auth-page-static</a>
+        </p>
       </form>
     </div>
   );
